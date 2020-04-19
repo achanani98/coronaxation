@@ -1,0 +1,186 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+
+<LoginScreen>
+	
+
+	FloatLayout:
+		size: root.width,root.height
+		
+		Image:
+			source: "./back.jpg"
+			keep_ratio: True
+
+
+		Label:
+			id: lbl1
+			text: "Username"
+			pos_hint: {"x": 0.1,"y":0.7}
+			size_hint: (0.3,0.1)
+		TextInput:
+			id: txt1
+			multiline: False
+			pos_hint: {"x": 0.5,"y":0.7}
+			size_hint: (0.4,0.08)
+
+		Label:
+			id: lbl2
+			text: "Password"
+			pos_hint: {"x": 0.1,"y":0.55}
+			size_hint: (0.3,0.1)
+		TextInput:
+			id: txt2
+			multiline: False
+			pos_hint: {"x": 0.5,"y":0.55}
+			size_hint: (0.4,0.08)
+
+		Button:
+			text : "Sign in"
+			size_hint: (0.6,0.08)
+			pos_hint: {"x": 0.2,"y":0.20}
+			on_press: root.SignIn()
+
+		Button:
+			pos_hint: {"x": 0.2,"y":0.08}
+			size_hint: (0.6,0.08)
+			text : "Do not have an account? SIGN UP now!!!"
+			on_press:
+				app.root.transition = SlideTransition(direction='right')
+    			app.root.current = "screen3"
+
+<SignUpScreen>
+	
+	FloatLayout:
+		size: root.width,root.height
+		Image:
+			source: "./back.jpg"
+			keep_ratio: True
+
+		
+			
+		Label:
+			id: lbl1
+			text: "Name"
+			pos_hint: {"x": 0.1,"y":0.85}
+			size_hint: (0.3,0.08)
+		TextInput:
+			id: txt1
+			multiline: False
+			pos_hint: {"x": 0.5,"y":0.85}
+			size_hint: (0.4,0.07)
+
+		
+		Label:
+			id: lbl2
+			text: "Email id"
+			pos_hint: {"x": 0.1,"y":0.75}
+			size_hint: (0.3,0.08)
+		TextInput:
+			id: txt2
+			multiline: False
+			pos_hint: {"x": 0.5,"y":0.75}
+			size_hint: (0.4,0.07)
+
+		
+		Label:
+			id: lbl3
+			text: "Username"
+			pos_hint: {"x": 0.1,"y":0.65}
+			size_hint: (0.3,0.08)
+		TextInput:
+			id: txt3
+			multiline: False
+			pos_hint: {"x": 0.5,"y":0.65}
+			size_hint: (0.4,0.07)
+
+		Label:
+			id: lbl4
+			text: "Password"
+			pos_hint: {"x": 0.1,"y":0.55}
+			size_hint: (0.3,0.08)
+		TextInput:
+			id: txt4
+			multiline: False
+			pos_hint: {"x": 0.5,"y":0.55}
+			size_hint: (0.4,0.07)
+
+
+		Label:
+			id: lbl5
+			text: "Confirm Password"
+			pos_hint: {"x": 0.1,"y":0.45}
+			size_hint: (0.3,0.08)
+		TextInput:
+			id: txt5
+			multiline: False
+			pos_hint: {"x": 0.5,"y":0.45}
+			size_hint: (0.4,0.07)
+
+		Label:
+			id: lbl6
+			text: "IITK Roll no"
+			pos_hint: {"x": 0.1,"y":0.35}
+			size_hint: (0.3,0.08)
+		TextInput:
+			id: txt6
+			multiline: False
+			pos_hint: {"x": 0.5,"y":0.35}
+			size_hint: (0.4,0.07)
+
+
+		Button:
+			text : "Sign UP"
+			on_press: root.SignUp()
+			size_hint: (0.6,0.08)
+			pos_hint: {"x": 0.2,"y":0.20}
+			
+		Button:
+			pos_hint: {"x": 0.2,"y":0.08}
+			size_hint: (0.6,0.08)
+			text: " Back to Sign In page"
+			on_press:
+				app.root.transition = FadeTransition(direction='left')
+    			app.root.current = "screen1"
+
+
+
+<OtherScreen>
+	
+	FloatLayout:
+		
+		size: root.width,root.height
+
+		Label:
+			text: "Padhaaro !!!!"
+			font_size: "100sp"
+		Button:
+			pos_hint: {"x": 0.2,"y":0.08}
+			size_hint: (0.6,0.08)
+			text : "Logout"
+			on_press:
+				app.root.transition = SlideTransition(direction='right')
+    			app.root.current = "screen1"
+
+
+<Manager>:
+    id: screen_manager
+
+    screen_one: screen_one
+    screen_two: screen_two
+    screen_three: screen_three
+
+    LoginScreen:
+        id: screen_one
+        name: "screen1"
+        manager: screen_manager
+
+    OtherScreen:
+        id: screen_two
+        name: "screen2"
+        manager: screen_manager
+
+    SignUpScreen:
+    	id: screen_three
+    	name: "screen3"
+    	manager: screen_manager
